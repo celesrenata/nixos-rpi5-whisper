@@ -118,5 +118,5 @@
   users.groups.audio.members = [ "celes" "whisper" ];
   users.users.nixremote.isNormalUser = true;
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 }
