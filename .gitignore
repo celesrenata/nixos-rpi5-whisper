@@ -1,0 +1,18 @@
+# Secrets and keys
+modules/.age-key.txt
+modules/secrets.toml
+*.age
+
+# Build results
+result
+result-*
+
+# Backup files
+*.bak
+*.backup*
+*.broken
+*.reset
+*.txt
+
+# Lock file (optional - some prefer to commit this)
+# flake.lock
