@@ -56,7 +56,7 @@
                 src = prev.fetchFromGitHub {
                   owner = "rhasspy";
                   repo = "wyoming-satellite";
-                  rev = "v\${version}";
+                  rev = "v${version}";
                   hash = "sha256-w/s2Vgiz2qfczFwlJQaT+IvbvOt+Fy/VufQxgpqUxKg=";
                 };
                 build-system = with prev.python3Packages; [ setuptools ];
