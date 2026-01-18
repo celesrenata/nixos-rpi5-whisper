@@ -57,16 +57,16 @@
                 };
               };
               python3Packages = final.python3.pkgs;
-              wyoming-satellite = prev.wyoming-satellite.override { python3Packages = final.python3Packages; };
-            })
-          ];
-        }
-        sops-nix.nixosModules.sops
-        home-manager.nixosModules.home-manager
-        ./modules/common.nix
-        ./hosts/${hostName}/hardware-configuration.nix
-      ];
-    };
+              wyoming-satellite = let
+                python = final.python3.override {
+                  self = python;
+                  packageOverrides = self: super: {
+                    wyoming = final.python3Packages.wyoming;
+                  };
+                };
+              in python.pkgs.buildPythonApplication (prev.wyoming-satellite.drvAttrs // {
+                propagatedBuildInputs = with python.pkgs; [ pyring-buffer wyoming zeroconf ];
+              });
   in
   {
     nixosConfigurations = {
