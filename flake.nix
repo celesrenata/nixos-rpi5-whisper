@@ -46,26 +46,6 @@
                   });
                 };
               };
-              python3Packages = final.python3.pkgs;
-            })
-            (final: prev: {
-              wyoming-satellite = prev.python3Packages.buildPythonApplication rec {
-                pname = "wyoming-satellite";
-                version = "1.4.1";
-                pyproject = true;
-                src = prev.fetchFromGitHub {
-                  owner = "rhasspy";
-                  repo = "wyoming-satellite";
-                  rev = "v\${version}";
-                  hash = "sha256-w/s2Vgiz2qfczFwlJQaT+IvbvOt+Fy/VufQxgpqUxKg=";
-                };
-                build-system = with prev.python3Packages; [ setuptools ];
-                propagatedBuildInputs = with prev.python3Packages; [ pyring-buffer wyoming zeroconf ];
-                pythonImportsCheck = [ "wyoming_satellite" ];
-                dontCheckRuntimeDeps = true;
-                pythonCatchConflicts = false;
-              };
-            })
           ];
         }
         sops-nix.nixosModules.sops
