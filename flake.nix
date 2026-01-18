@@ -61,6 +61,7 @@
                 };
                 build-system = with prev.python3Packages; [ setuptools ];
                 propagatedBuildInputs = with prev.python3Packages; [ pyring-buffer wyoming zeroconf ];
+                dependencies = propagatedBuildInputs;
                 pythonImportsCheck = [ "wyoming_satellite" ];
                 dontCheckRuntimeDeps = true;
                 pythonCatchConflicts = false;
