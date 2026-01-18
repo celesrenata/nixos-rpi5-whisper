@@ -2,7 +2,6 @@
 {
   imports = [ 
     ../../modules/satellite.nix 
-    ../../modules/wyoming-fix.nix
   ];
 
   services.wyoming.satellite = {
