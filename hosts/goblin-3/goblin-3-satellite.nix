@@ -1,7 +1,9 @@
 { config, pkgs, lib, ... }:
 {
-  imports = [ ../../modules/wyoming-fix.nix ];
-  imports = [ ../../modules/satellite.nix ];
+  imports = [ 
+    ../../modules/satellite.nix 
+    ../../modules/wyoming-fix.nix
+  ];
 
   services.wyoming.satellite = {
     name = "goblin-3-satellite";
