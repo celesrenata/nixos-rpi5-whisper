@@ -41,14 +41,6 @@
             (final: prev: {
               python3 = prev.python3.override {
                 packageOverrides = pyfinal: pyprev: {
-                  wyoming = pyprev.wyoming.overridePythonAttrs (old: {
-                    version = "1.7.2";
-                    src = prev.fetchPypi {
-                      pname = "wyoming";
-                      version = "1.7.2";
-                      hash = "sha256-PwYwyvsD6H3uhXu8r8Dk1zsyheyZ/pnh56jjy6buN5M=";
-                    };
-                  });
                   pyopen-wakeword = pyprev.pyopen-wakeword.overrideAttrs (old: {
                     doCheck = false;
                   });
