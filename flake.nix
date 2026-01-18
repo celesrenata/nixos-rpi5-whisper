@@ -62,6 +62,7 @@
                 build-system = with prev.python3Packages; [ setuptools ];
                 propagatedBuildInputs = with prev.python3Packages; [ pyring-buffer wyoming zeroconf ];
                 dependencies = propagatedBuildInputs;
+                optional-dependencies = { webrtc = with prev.python3Packages; [ webrtc-noise-gain ]; silerovad = with prev.python3Packages; [ pysilero-vad ]; };
                 pythonImportsCheck = [ "wyoming_satellite" ];
                 dontCheckRuntimeDeps = true;
                 pythonCatchConflicts = false;
