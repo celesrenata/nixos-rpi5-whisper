@@ -1,11 +1,12 @@
 { config, pkgs, lib, ... }:
 {
-  environment.etc."openwakeword/models/nixberry.tflite" = {
+  environment.etc."openwakeword/models/nixberry/nixberry.tflite" = {
     source = ./nixberry.tflite;
     mode = "0644";
   };
 
   services.wyoming.openwakeword = {
     customModelsDirectories = [ "/etc/openwakeword/models" ];
+    extraArgs = [ "--debug" ];
   };
 }
