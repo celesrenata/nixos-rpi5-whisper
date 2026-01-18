@@ -4,6 +4,7 @@
     ./graphics.nix
     ./remote-build.nix
     ./whisper.nix
+    ./wakeword.nix
     ./dns.nix
   ];
 
