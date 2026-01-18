@@ -3,12 +3,14 @@ let
   wyoming-1-8-0 = pkgs.python3Packages.buildPythonPackage rec {
     pname = "wyoming";
     version = "1.8.0";
-    format = "setuptools";
+    format = "pyproject";
     
     src = pkgs.fetchPypi {
       inherit pname version;
       sha256 = "sha256-kMFsn7fpDLzidwMoBreBbmxjGBI5MganMpj0rU/823Y=";
     };
+    
+    nativeBuildInputs = with pkgs.python3Packages; [ setuptools ];
   };
 in
 {
