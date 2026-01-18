@@ -1,22 +1,18 @@
 { config, pkgs, lib, ... }:
 let
-  wyoming-1-8-0 = pkgs.python3Packages.buildPythonPackage rec {
-    pname = "wyoming";
+  wyoming-1-8-0 = pkgs.python3Packages.wyoming.overrideAttrs (old: rec {
     version = "1.8.0";
-    format = "pyproject";
-    
     src = pkgs.fetchPypi {
-      inherit pname version;
+      pname = "wyoming";
+      inherit version;
       sha256 = "sha256-kMFsn7fpDLzidwMoBreBbmxjGBI5MganMpj0rU/823Y=";
     };
-    
-    nativeBuildInputs = with pkgs.python3Packages; [ setuptools ];
+  });
+  
+  satellite-with-new-wyoming = pkgs.wyoming-satellite.override {
+    wyoming = wyoming-1-8-0;
   };
 in
 {
-  services.wyoming.satellite.package = pkgs.wyoming-satellite.overridePythonAttrs (old: {
-    propagatedBuildInputs = map (p: if p.pname or "" == "wyoming" then wyoming-1-8-0 else p) (old.propagatedBuildInputs or []);
-    dontCheckRuntimeDeps = true;
-    pythonCatchConflicts = false;
-  });
+  services.wyoming.satellite.package = lib.mkForce satellite-with-new-wyoming;
 }
