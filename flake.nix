@@ -57,18 +57,9 @@
                 };
               };
               python3Packages = final.python3.pkgs;
-              wyoming-satellite = let
-                python = final.python3.override {
-                  self = python;
-                  packageOverrides = self: super: {
-                    wyoming = final.python3Packages.wyoming;
-                  };
-                };
-              in python.pkgs.buildPythonApplication (builtins.removeAttrs prev.wyoming-satellite.drvAttrs ["outputs"]) // {
-                pyproject = true;
-                build-system = with python.pkgs; [ setuptools ];
-                propagatedBuildInputs = with python.pkgs; [ pyring-buffer wyoming zeroconf ];
-              };
+              wyoming-satellite = prev.wyoming-satellite.overridePythonAttrs (old: {
+                propagatedBuildInputs = with final.python3Packages; [ pyring-buffer wyoming zeroconf ];
+              });
             })
           ];
         }
