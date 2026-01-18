@@ -15,7 +15,8 @@ let
 in
 {
   services.wyoming.satellite.package = pkgs.wyoming-satellite.overridePythonAttrs (old: {
-    propagatedBuildInputs = builtins.filter (p: p.pname or "" != "wyoming") (old.propagatedBuildInputs or []) ++ [ wyoming-1-8-0 ];
-    dontCheckRuntimeDeps = true;  # Disable runtime dependency check
+    propagatedBuildInputs = map (p: if p.pname or "" == "wyoming" then wyoming-1-8-0 else p) (old.propagatedBuildInputs or []);
+    dontCheckRuntimeDeps = true;
+    pythonCatchConflicts = false;
   });
 }
