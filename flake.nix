@@ -46,6 +46,8 @@
                   });
                 };
               };
+              python3Packages = final.python3.pkgs;
+            })
           ];
         }
         sops-nix.nixosModules.sops
