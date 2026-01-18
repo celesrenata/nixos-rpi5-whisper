@@ -6,6 +6,7 @@
 {
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
+      ./goblin-3-satellite.nix
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "usbhid" "usb_storage" "sr_mod" ];
