@@ -57,7 +57,7 @@
                   owner = "rhasspy";
                   repo = "wyoming-satellite";
                   rev = "v${version}";
-                  hash = "sha256-w/s2Vgiz2qfczFwlJQaT+IvbvOt+Fy/VufQxgpqUxKg=";
+                  hash = "sha256-sAtyyS60Fr6iFE3tTxEgAjhmX6O5WjWwb9rk+phzrtM=";
                 };
                 build-system = with prev.python3Packages; [ setuptools ];
                 propagatedBuildInputs = with prev.python3Packages; [ pyring-buffer wyoming zeroconf ];
