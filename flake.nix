@@ -65,6 +65,8 @@
                   };
                 };
               in python.pkgs.buildPythonApplication (prev.wyoming-satellite.drvAttrs // {
+                pyproject = true;
+                build-system = with python.pkgs; [ setuptools ];
                 propagatedBuildInputs = with python.pkgs; [ pyring-buffer wyoming zeroconf ];
               });
             })
