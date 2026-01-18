@@ -67,6 +67,15 @@
               in python.pkgs.buildPythonApplication (prev.wyoming-satellite.drvAttrs // {
                 propagatedBuildInputs = with python.pkgs; [ pyring-buffer wyoming zeroconf ];
               });
+            })
+          ];
+        }
+        sops-nix.nixosModules.sops
+        home-manager.nixosModules.home-manager
+        ./modules/common.nix
+        ./hosts/${hostName}/hardware-configuration.nix
+      ];
+    };
   in
   {
     nixosConfigurations = {
