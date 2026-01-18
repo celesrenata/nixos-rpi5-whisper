@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 {
-  environment.etc."openwakeword/models/nixberry.onnx" = {
-    source = ./nixberry.onnx;
+  environment.etc."openwakeword/models/nixberry.tflite" = {
+    source = ./nixberry.tflite;
     mode = "0644";
   };
 
