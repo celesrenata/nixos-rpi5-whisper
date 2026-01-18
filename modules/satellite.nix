@@ -92,6 +92,7 @@ in
       "--wake-word-name" "nixberry"
       "--snd-uri" "tcp://127.0.0.1:10300"
       "--debug"
+      "--detection-command" "logger -t satellite-detection WAKE_WORD_DETECTED"
     ];
   };
 }
