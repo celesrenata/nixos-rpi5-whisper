@@ -76,6 +76,3 @@
     };
   };
 }
-              wyoming-satellite = prev.wyoming-satellite.override {
-                python3Packages = final.python3Packages;
-              };
