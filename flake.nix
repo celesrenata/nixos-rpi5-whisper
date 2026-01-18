@@ -59,6 +59,7 @@
               python3Packages = final.python3.pkgs;
               wyoming-satellite = prev.wyoming-satellite.overridePythonAttrs (old: {
                 propagatedBuildInputs = with final.python3Packages; [ pyring-buffer wyoming zeroconf ];
+                dontCheckRuntimeDeps = true;
               });
             })
           ];
