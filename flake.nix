@@ -41,48 +41,13 @@
             (final: prev: {
               python3 = prev.python3.override {
                 packageOverrides = pyfinal: pyprev: {
-                  wyoming = pyprev.wyoming.overridePythonAttrs (old: {
-                    version = "1.7.2";
-                    pyproject = true;
-                    src = prev.fetchPypi {
-                      pname = "wyoming";
-                      version = "1.7.2";
-                      hash = "sha256-PwYwyvsD6H3uhXu8r8Dk1zsyheyZ/pnh56jjy6buN5M=";
-                    };
-                    build-system = [ pyprev.setuptools ];
-                  });
                   pyopen-wakeword = pyprev.pyopen-wakeword.overrideAttrs (old: {
                     doCheck = false;
+                    doInstallCheck = false;
                   });
                 };
               };
               python3Packages = final.python3.pkgs;
-              wyoming-satellite = final.python3Packages.buildPythonApplication rec {
-                pname = "wyoming-satellite";
-                version = "1.4.1";
-                pyproject = true;
-                src = prev.fetchFromGitHub {
-                  owner = "rhasspy";
-                  repo = "wyoming-satellite";
-                  rev = "v${version}";
-                  hash = "sha256-sAtyyS60Fr6iFE3tTxEgAjhmX6O5WjWwb9rk+phzrtM=";
-                };
-                postPatch = ''
-                  substituteInPlace pyproject.toml \
-                    --replace-fail 'include = ["wyoming_satellite"]' 'include = ["wyoming_satellite*"]'
-                '';
-                build-system = with final.python3Packages; [ setuptools ];
-                propagatedBuildInputs = with final.python3Packages; [ pyring-buffer wyoming zeroconf ];
-                dontCheckRuntimeDeps = true;
-                pythonCatchConflicts = false;
-                passthru = {
-                  dependencies = with final.python3Packages; [ webrtc-noise-gain pysilero-vad ];
-                  optional-dependencies = {
-                    webrtc = with final.python3Packages; [ webrtc-noise-gain ];
-                    silerovad = with final.python3Packages; [ pysilero-vad ];
-                  };
-                };
-              };
             })
           ];
         }
