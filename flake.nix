@@ -57,11 +57,32 @@
                 };
               };
               python3Packages = final.python3.pkgs;
-              wyoming-satellite = prev.wyoming-satellite.overridePythonAttrs (old: {
+              wyoming-satellite = final.python3Packages.buildPythonApplication rec {
+                pname = "wyoming-satellite";
+                version = "1.4.1";
+                pyproject = true;
+                src = prev.fetchFromGitHub {
+                  owner = "rhasspy";
+                  repo = "wyoming-satellite";
+                  rev = "v${version}";
+                  hash = "sha256-sAtyyS60Fr6iFE3tTxEgAjhmX6O5WjWwb9rk+phzrtM=";
+                };
+                postPatch = ''
+                  substituteInPlace pyproject.toml \
+                    --replace-fail 'include = ["wyoming_satellite"]' 'include = ["wyoming_satellite*"]'
+                '';
+                build-system = with final.python3Packages; [ setuptools ];
                 propagatedBuildInputs = with final.python3Packages; [ pyring-buffer wyoming zeroconf ];
                 dontCheckRuntimeDeps = true;
                 pythonCatchConflicts = false;
-              });
+                passthru = {
+                  dependencies = with final.python3Packages; [ webrtc-noise-gain pysilero-vad ];
+                  optional-dependencies = {
+                    webrtc = with final.python3Packages; [ webrtc-noise-gain ];
+                    silerovad = with final.python3Packages; [ pysilero-vad ];
+                  };
+                };
+              };
             })
           ];
         }
