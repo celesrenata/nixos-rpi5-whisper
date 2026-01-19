@@ -81,7 +81,7 @@ in
       command = "${pw-record-wrapper} --rate 16000 --channels 1 --format s16 -";
       autoGain = 5;
     };
-    sound.command = "${pw-play-wrapper} --rate 22050 --channels 1 --format s16 -";
+    sound.command = "${pw-play-wrapper} --raw --rate 22050 --channels 1 --format s16 -";
     sounds = {
       awake = "/etc/satellite/sounds/awake.wav";
       done = "/etc/satellite/sounds/done.wav";
@@ -90,9 +90,9 @@ in
     extraArgs = [
       "--wake-uri" "tcp://127.0.0.1:10400"
       "--wake-word-name" "nixberry"
-      "--snd-uri" "tcp://127.0.0.1:10300"
+      "--snd-uri" "tcp://10.1.1.12:10300"
       "--debug"
-      "--detection-command" "logger -t satellite-detection WAKE_WORD_DETECTED"
+      "--detection-command" "/run/current-system/sw/bin/logger -t satellite-detection WAKE_WORD_DETECTED"
       "--no-zeroconf"
     ];
   };
