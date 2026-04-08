@@ -35,7 +35,7 @@
             raspberry-pi-5.base
             raspberry-pi-5.page-size-16k
           ];
-          boot.loader.raspberryPi.bootloader = "kernel";
+          #boot.loader.raspberryPi.bootloader = "kernel";
           networking.hostName = hostName;
           nixpkgs.overlays = [
             (final: prev: {
